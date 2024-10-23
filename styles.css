@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.catto {
+    --scaleAmt : 1;
+    --shakeMagnitude : 2px;
+    --timeScale : .3s;
+    --saturation: 1;
+    --hue: 0deg;
+
+    width: 200px;
+    height: 200px;
+    background-image: url("assets/images/Cat-Default.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 25%;
+    transition: transform .2s ease-in;
+    filter: saturate(var(--saturation)) hue-rotate(var(--hue)); /* Red tint */
+    position: relative;
+    overflow: hidden;
+}
+
+.catto.grow {
+    transform: scale(1.2);
+}
+
+.catto.shake {
+    animation: shake var(--timeScale) infinite;
+}
+
+/* Define the shake animation */
+@keyframes shake {
+    0% { 
+        transform: scale(var(--scaleAmt)) translate(var(--shakeMagnitude), calc(var(--shakeMagnitude) * -1)); 
+    }
+    25% { 
+        transform: scale(var(--scaleAmt)) translate(calc(var(--shakeMagnitude) * -1), var(--shakeMagnitude)); 
+    }
+    50% { 
+        transform: scale(var(--scaleAmt)) translate(var(--shakeMagnitude), var(--shakeMagnitude)); 
+    }
+    75% { 
+        transform: scale(var(--scaleAmt)) translate(calc(var(--shakeMagnitude) * -1), calc(var(--shakeMagnitude) * -1)); 
+    }
+    100% { 
+        transform: scale(var(--scaleAmt)) translate(var(--shakeMagnitude), calc(var(--shakeMagnitude) * -1)); 
+    }
+}
+
+
+.explosion {
+    position: absolute;
+    z-index: 10;
+    width: 100vh;
+    height: 100vh;
+    display: none;
+}
